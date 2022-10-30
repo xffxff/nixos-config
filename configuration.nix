@@ -126,6 +126,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      inherit pkgs;
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.xffxff = {
     isNormalUser = true;
@@ -151,7 +157,7 @@
     ripgrep
     fish
     zellij
-    clash
+    nur.repos.linyinfeng.clash-for-windows
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
