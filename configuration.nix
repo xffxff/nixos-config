@@ -87,6 +87,7 @@
     packages = with pkgs; [
       firefox
       clash
+      _1password-gui
     #  thunderbird
     ];
   };
@@ -101,6 +102,8 @@
     wget
     git
     bat
+    ripgrep
+    zellij
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
