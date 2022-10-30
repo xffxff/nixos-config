@@ -28,8 +28,15 @@
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
 
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = [ pkgs.fcitx5-chinese-addons ];
+  };
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.utf8";
+
+  i18n.supportedLocales = [ "zh_CN.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "zh_CN.utf8";
@@ -42,6 +49,45 @@
     LC_TELEPHONE = "zh_CN.utf8";
     LC_TIME = "zh_CN.utf8";
   };
+
+  fonts = {
+    enableDefaultFonts = true;
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        emoji = [ "Noto Color Emoji" ];
+        monospace = [
+          "Hack"
+          "Source Han Mono SC"
+        ];
+        sansSerif = [
+          "Inter"
+          "Liberation Sans"
+          "Source Han Sans SC"
+        ];
+        serif = [
+          "Liberation Serif"
+          "Source Han Serif SC"
+        ];
+      };
+    };
+    fontDir.enable = true;
+    enableGhostscriptFonts = true;
+    fonts = with pkgs; [
+      hack-font
+      inter
+      liberation_ttf
+      noto-fonts-emoji
+      roboto
+      sarasa-gothic
+      source-han-mono
+      source-han-sans
+      source-han-serif
+      wqy_microhei
+      wqy_zenhei
+    ];
+  };
+
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
