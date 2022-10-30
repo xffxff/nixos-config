@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -187,7 +186,5 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
-  home-manager.users.xffxff = { pkgs, ... }: {
-    home.packages = [ pkgs.htop ];
-  };
+  nix.trustedUsers = [ "root" "xffxff" ];
 }
