@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -132,7 +133,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-      clash
       _1password-gui
     #  thunderbird
     ];
@@ -149,7 +149,9 @@
     git
     bat
     ripgrep
+    fish
     zellij
+    clash
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -179,4 +181,7 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
+  home-manager.users.xffxff = { pkgs, ... }: {
+    home.packages = [ pkgs.htop ];
+  };
 }
