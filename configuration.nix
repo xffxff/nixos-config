@@ -187,4 +187,9 @@
   system.stateVersion = "22.05"; # Did you read the comment?
 
   nix.trustedUsers = [ "root" "xffxff" ];
+
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = "experimental-features = nix-command flakes";
+  };
 }
