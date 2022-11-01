@@ -126,7 +126,10 @@
   # services.xserver.libinput.enable = true;
 
   nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+    nur = import (builtins.fetchTarball {
+	url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
+        sha256 = "0vs5zzng3azyaj9fpc0all53fmb56jnncjja42k7bdyzjb0wzwvp";
+    }){
       inherit pkgs;
     };
   };
@@ -186,7 +189,8 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
-  nix.trustedUsers = [ "root" "xffxff" ];
+  nix.settings.trusted-users = [ "root" "xffxff" ];
+  nix.settings.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
 
   nix = {
     package = pkgs.nixFlakes;
