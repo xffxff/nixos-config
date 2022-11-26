@@ -28,11 +28,50 @@
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
+  console = {
+    font = "meslo-lgs-nf";
+    # keyMap = "us";
+    # useXkbConfig = true; # use xkbOptions in tty.
+  };
+
+  fonts = {
+    enableDefaultFonts = true;
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        emoji = [ "Noto Color Emoji" ];
+        monospace = [
+          "Hack"
+          "Source Han Mono SC"
+        ];
+        sansSerif = [
+          "Inter"
+          "Liberation Sans"
+          "Source Han Sans SC"
+        ];
+        serif = [
+          "Liberation Serif"
+          "Source Han Serif SC"
+        ];
+      };
+    };
+    fontDir.enable = true;
+    enableGhostscriptFonts = true;
+    fonts = with pkgs; [
+      meslo-lgs-nf
+      hack-font
+      inter
+      liberation_ttf
+      noto-fonts-emoji
+      roboto
+      sarasa-gothic
+      source-han-mono
+      source-han-sans
+      source-han-serif
+      wqy_microhei
+      wqy_zenhei
+    ];
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -66,8 +105,8 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       git
-      clash
       firefox
+      hello
   #     thunderbird
     ];
   };
@@ -77,6 +116,7 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    clash
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -86,6 +126,9 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
+  nix.settings.trusted-users = [ "root" "zhoufan" ];
+  nix.settings.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
 
   # List services that you want to enable:
 
