@@ -99,6 +99,9 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.zhoufan = {
     isNormalUser = true;
@@ -117,6 +120,23 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     clash
+    (vscode-with-extensions.override {
+      vscodeExtensions = with vscode-extensions; [
+        ms-python.python
+	matklad.rust-analyzer
+	vscodevim.vim
+	eamodio.gitlens
+	usernamehw.errorlens
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+	{
+	  name = "copilot";
+	  publisher = "GitHub";
+	  version = "1.61.7372";
+	  # sha256 = "0000000000000000000000000000000000000000000000000000";
+	  sha256 = "sha256-mbyyp8zrAtPseAx7ZbExjke9LlQjqJzk6SgjqpCM2f4=";
+	}
+      ];
+    })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
