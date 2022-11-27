@@ -20,14 +20,34 @@
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Asia/Shanghai";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = [ pkgs.fcitx5-chinese-addons ];
+  };
+
+  i18n.supportedLocales = [ "zh_CN.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "zh_CN.utf8";
+    LC_IDENTIFICATION = "zh_CN.utf8";
+    LC_MEASUREMENT = "zh_CN.utf8";
+    LC_MONETARY = "zh_CN.utf8";
+    LC_NAME = "zh_CN.utf8";
+    LC_NUMERIC = "zh_CN.utf8";
+    LC_PAPER = "zh_CN.utf8";
+    LC_TELEPHONE = "zh_CN.utf8";
+    LC_TIME = "zh_CN.utf8";
+  };
+
   console = {
     font = "meslo-lgs-nf";
     # keyMap = "us";
@@ -102,6 +122,12 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      inherit pkgs;
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.zhoufan = {
     isNormalUser = true;
@@ -109,7 +135,6 @@
     packages = with pkgs; [
       git
       firefox
-      hello
   #     thunderbird
     ];
   };
@@ -120,6 +145,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     clash
+    nur.repos.linyinfeng.clash-for-windows
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         ms-python.python
