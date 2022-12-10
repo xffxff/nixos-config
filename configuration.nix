@@ -135,6 +135,7 @@
     packages = with pkgs; [
       git
       firefox
+      _1password-gui
   #     thunderbird
     ];
   };
@@ -182,6 +183,7 @@
 
   nix.settings.trusted-users = [ "root" "zhoufan" ];
   nix.settings.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # List services that you want to enable:
 
