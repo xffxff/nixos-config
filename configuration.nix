@@ -151,7 +151,23 @@
     clash
     nur.repos.linyinfeng.clash-for-windows
     glib
-    vscode.fhs
+    (vscode-with-extensions.override {
+      vscodeExtensions = with vscode-extensions; [
+        ms-python.python
+        vscodevim.vim
+        eamodio.gitlens
+        usernamehw.errorlens
+        github.github-vscode-theme
+            ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "copilot";
+          publisher = "GitHub";
+          version = "1.61.7372";
+          # sha256 = "0000000000000000000000000000000000000000000000000000";
+          sha256 = "sha256-mbyyp8zrAtPseAx7ZbExjke9LlQjqJzk6SgjqpCM2f4=";
+        }
+      ];
+    })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
