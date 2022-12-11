@@ -49,7 +49,7 @@
   };
 
   console = {
-    font = "meslo-lgs-nf";
+    # font = "meslo-lgs-nf";
     # keyMap = "us";
     # useXkbConfig = true; # use xkbOptions in tty.
   };
@@ -150,6 +150,8 @@
     wget
     clash
     nur.repos.linyinfeng.clash-for-windows
+    glib
+    vscode.fhs
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -188,5 +190,8 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = true;
+  system.autoUpgrade.channel = https://nixos.org/channels/nixos-22.11;
 }
 
