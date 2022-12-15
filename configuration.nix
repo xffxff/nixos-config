@@ -139,6 +139,7 @@
       git
       firefox
       _1password-gui
+      flameshot
   #     thunderbird
     ];
   };
@@ -157,6 +158,7 @@
         vscodevim.vim
         eamodio.gitlens
         usernamehw.errorlens
+	matklad.rust-analyzer
         github.github-vscode-theme
             ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
