@@ -134,7 +134,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.zhoufan = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       git
       firefox
@@ -143,6 +143,10 @@
   #     thunderbird
     ];
   };
+
+  # docker
+  virtualisation.docker.enable = true;
+  
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
