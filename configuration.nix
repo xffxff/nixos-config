@@ -131,6 +131,9 @@
     };
   };
 
+  # docker
+  virtualisation.docker.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.zhoufan = {
     isNormalUser = true;
@@ -143,10 +146,6 @@
   #     thunderbird
     ];
   };
-
-  # docker
-  virtualisation.docker.enable = true;
-  
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
